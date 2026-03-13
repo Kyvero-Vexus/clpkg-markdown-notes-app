@@ -1,0 +1,10 @@
+module Core.Tags
+  ( normalize-tag
+  , extract-tags
+  ) where
+
+normalize-tag :: String -> String
+normalize-tag raw = raw
+
+extract-tags :: String -> List String
+extract-tags _ = Nil

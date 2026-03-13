@@ -1,0 +1,55 @@
+module Core.AST
+  ( MdNode(..)
+  , MdBlock(..)
+  , MdInline(..)
+  , FrontMatter(..)
+  , FmValue(..)
+  , NoteMeta(..)
+  ) where
+
+-- Core typed AST surface for Markdown notes.
+
+data MdNode
+  = MdDocument (List MdBlock)
+
+data MdBlock
+  = MdHeading Int (List MdInline)
+  | MdParagraph (List MdInline)
+  | MdCodeBlock (Maybe String) String
+  | MdBlockquote (List MdBlock)
+  | MdList Bool (List (List MdBlock))
+  | MdThematicBreak
+  | MdHtmlBlock String
+
+data MdInline
+  = MdText String
+  | MdEmphasis (List MdInline)
+  | MdStrong (List MdInline)
+  | MdCode String
+  | MdLink String (Maybe String) (List MdInline)
+  | MdImage String (Maybe String) String
+  | MdWikiLink String (Maybe String)
+  | MdWikiEmbed String
+  | MdTag String
+  | MdHardBreak
+  | MdHtmlInline String
+
+data FrontMatter
+  = FrontMatter (List (Tuple String FmValue))
+
+data FmValue
+  = FmString String
+  | FmList (List String)
+  | FmNumber Double
+  | FmBool Bool
+  | FmDate String
+
+data NoteMeta
+  = NoteMeta
+      { id : String
+      , title : Maybe String
+      , frontMatter : FrontMatter
+      , tags : List String
+      , outgoing : List String
+      , vaultPath : String
+      }

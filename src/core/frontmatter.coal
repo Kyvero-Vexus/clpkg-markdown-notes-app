@@ -1,0 +1,20 @@
+module Core.FrontMatter
+  ( FrontMatterError(..)
+  , parse-front-matter
+  ) where
+
+import Core.AST
+
+data FrontMatterError
+  = InvalidDelimiter
+  | InvalidKey String
+  | InvalidValue String
+
+-- Front-matter parser baseline for execution bead:
+-- returns empty map when no valid delimiter is present.
+
+parse-front-matter :: String -> Result FrontMatterError FrontMatter
+parse-front-matter input =
+  if input == ""
+    then Ok (FrontMatter Nil)
+    else Ok (FrontMatter Nil)

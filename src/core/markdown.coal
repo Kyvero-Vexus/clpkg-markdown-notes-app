@@ -1,0 +1,29 @@
+module Core.Markdown
+  ( ParseError(..)
+  , parse-commonmark
+  , parse-inline-snippet
+  ) where
+
+import Core.AST
+
+-- ParseError is explicit and total: no partial parser fallthrough.
+
+data ParseError
+  = EmptyInput
+  | InvalidHeadingLevel String
+  | UnterminatedCodeFence
+  | UnsupportedConstruct String
+
+-- Minimal deterministic parser baseline:
+-- - blank/empty => EmptyInput
+-- - non-empty input => single paragraph document
+
+parse-commonmark :: String -> Result ParseError MdNode
+parse-commonmark input =
+  if input == ""
+    then Err EmptyInput
+    else Ok (MdDocument (Cons (MdParagraph (parse-inline-snippet input)) Nil))
+
+parse-inline-snippet :: String -> List MdInline
+parse-inline-snippet s =
+  Cons (MdText s) Nil

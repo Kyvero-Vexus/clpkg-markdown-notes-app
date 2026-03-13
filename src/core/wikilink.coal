@@ -1,0 +1,13 @@
+module Core.WikiLink
+  ( WikiRef(..)
+  , extract-wikilinks
+  ) where
+
+-- Typed wiki-link extraction surface for [[note]], [[note|display]], ![[embed]].
+
+data WikiRef
+  = WikiLink String (Maybe String)
+  | WikiEmbed String
+
+extract-wikilinks :: String -> List WikiRef
+extract-wikilinks _ = Nil
