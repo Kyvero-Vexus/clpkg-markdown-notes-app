@@ -1,6 +1,6 @@
 # clpkg-markdown-notes-app — Full Specification
 
-> Sanitized public version (internal tracker IDs and workspace paths removed).
+> Sanitized public version (internal tracker IDs removed).
 
 
 **Repo target:** Kyvero-Vexus/clpkg-markdown-notes-app
@@ -430,4 +430,4 @@ Kyvero-Vexus/clpkg-markdown-notes/
 
 ## 10. Active Bead Breakdown References
 
-- `(internal-bead)` detailed execution plan: `docs/stts-l7nq-vault-breakdown.md`
+- `(internal-tracker)` detailed execution plan: `docs/stts-l7nq-vault-breakdown.md`

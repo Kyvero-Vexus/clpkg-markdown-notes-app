@@ -1,6 +1,6 @@
 ;;; vault.lisp --- typed vault path sandbox helpers
 
-(defpackage #:ceo/vault
+(defpackage #:clpkg-markdown-notes/vault
   (:use #:cl)
   (:export
    #:vault-path-condition
@@ -14,7 +14,7 @@
    #:reject-escape-path
    #:validate-symlink-target-under-root))
 
-(in-package #:ceo/vault)
+(in-package #:clpkg-markdown-notes/vault)
 
 #+sbcl
 (eval-when (:compile-toplevel :load-toplevel :execute)

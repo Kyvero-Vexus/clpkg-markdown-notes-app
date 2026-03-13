@@ -1,20 +1,17 @@
-# Security Validation Summary (Sanitized)
+# Security Validation Summary
 
-## Completed checks
+Recent validated security behavior for vault guards:
 
-- Absolute path input rejection
-- Lexical traversal rejection (`..` vectors)
-- Out-of-root canonical target rejection
-- Symlink target containment validation
-- Deterministic canonicalization failure signaling for broken symlink targets
+- absolute-path input is rejected deterministically
+- lexical traversal (`..`) is rejected before filesystem effects
+- out-of-root canonical paths are rejected with typed condition
+- broken symlink canonicalization now deterministically signals
+  `vault-canonicalization-failed`
+- escaped symlink targets are rejected as `vault-out-of-root`
 
-## Typed guarantees
+Typed boundary requirements retained:
 
-- Explicit condition hierarchy for vault path errors
-- Strict exported function contracts using SBCL type declarations
-- Ordered guard flow prior to filesystem side effects
+- explicit condition hierarchy for vault path errors
+- strict SBCL `declaim`/`ftype` contracts on exported guard functions
 
-## Follow-on validation
-
-- Expand threat corpus for platform-specific symlink edge cases
-- Integrate these checks into end-to-end vault CRUD security tests
+This document is sanitized for public tracking and omits internal tracker IDs.
