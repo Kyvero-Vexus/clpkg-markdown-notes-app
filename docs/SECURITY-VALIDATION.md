@@ -24,4 +24,8 @@ Typed boundary requirements retained:
 
 Guard order contract: lexical rejection occurs before any filesystem side effects.
 
+Additional IO verification evidence (temp perms + atomic rename):
+- `docs/IO-VERIFICATION.md`
+- `scripts/verify-vault-io.lisp`
+
 This document is sanitized for public tracking and omits internal tracker IDs.
