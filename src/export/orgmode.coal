@@ -1,0 +1,17 @@
+module Export.OrgMode
+  ( OrgConfig(..)
+  , render-to-org
+  ) where
+
+import Core.AST
+
+-- Typed Org-mode renderer for MdNode AST.
+
+data OrgConfig
+  = OrgConfig
+      { orgTitle : Maybe String
+      , orgAuthor : Maybe String
+      }
+
+render-to-org :: OrgConfig -> MdNode -> String
+render-to-org _ _ = ""

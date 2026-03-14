@@ -1,0 +1,30 @@
+module Export.JsonGraph
+  ( GraphNode(..)
+  , GraphEdge(..)
+  , NoteGraph(..)
+  , build-note-graph
+  , serialize-graph
+  ) where
+
+-- Typed JSON graph export for vault link structure.
+
+data GraphNode
+  = GNode
+      { nodeId : String
+      , nodeLabel : String
+      }
+
+data GraphEdge
+  = GEdge
+      { edgeSource : String
+      , edgeTarget : String
+      }
+
+data NoteGraph
+  = NoteGraph (List GraphNode) (List GraphEdge)
+
+build-note-graph :: List (Tuple String (List String)) -> NoteGraph
+build-note-graph _ = NoteGraph Nil Nil
+
+serialize-graph :: NoteGraph -> String
+serialize-graph _ = "{}"
