@@ -1,0 +1,35 @@
+module Core.BlockRef
+  ( BlockId(..)
+  , BlockRef(..)
+  , TransclusionResult(..)
+  , parse-block-ref
+  , resolve-block-ref
+  ) where
+
+-- Block references and transclusion for Obsidian-compatible linking.
+-- Block IDs: `^block-id` at end of paragraph
+-- Block references: `![[note#^block-id]]`
+
+data BlockId
+  = BlockId String  -- The identifier after ^
+
+data BlockRef
+  = BlockRef
+      { refNote : String
+      , refBlock : BlockId
+      }
+  | SectionRef
+      { secNote : String
+      , secHeading : String
+      }
+
+data TransclusionResult
+  = Transcluded String        -- Successfully resolved content
+  | NotFound String           -- Block ID not found, note name
+  | Circular String           -- Circular reference detected
+
+parse-block-ref :: String -> Maybe BlockRef
+parse-block-ref _ = Nothing
+
+resolve-block-ref :: BlockRef -> (String -> Maybe String) -> TransclusionResult
+resolve-block-ref _ _ = NotFound ""
