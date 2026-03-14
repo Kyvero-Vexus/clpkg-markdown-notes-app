@@ -1,0 +1,29 @@
+module Import.OrgMode
+  ( OrgImportConfig(..)
+  , OrgLine(..)
+  , classify-org-line
+  , org-to-markdown
+  ) where
+
+-- Typed Org-mode to Markdown converter.
+-- Classifies org lines and translates to Markdown syntax.
+
+data OrgImportConfig
+  = OrgImportConfig
+      { preserveDrawers : Boolean
+      , convertTodos : Boolean
+      }
+
+data OrgLine
+  = OrgHeading UFix String       -- level, text
+  | OrgListItem String           -- text
+  | OrgCodeBlock String String   -- lang, content
+  | OrgParagraph String          -- text
+  | OrgBlank
+  | OrgProperty String String    -- key, value
+
+classify-org-line :: String -> OrgLine
+classify-org-line _ = OrgBlank
+
+org-to-markdown :: OrgImportConfig -> String -> String
+org-to-markdown _ _ = ""
