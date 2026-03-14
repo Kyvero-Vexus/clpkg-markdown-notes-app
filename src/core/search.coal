@@ -1,0 +1,35 @@
+module Core.Search
+  ( Trigram(..)
+  , TrigramIndex(..)
+  , LinkEdge(..)
+  , LinkGraph(..)
+  , extract-trigrams
+  , trigram-score
+  , build-link-graph
+  ) where
+
+-- Typed trigram search index + link graph for vault notes.
+
+data Trigram
+  = Trigram String
+
+data TrigramIndex
+  = TIndex (List (Tuple Trigram (List String)))
+
+data LinkEdge
+  = LinkEdge
+      { source : String
+      , target : String
+      }
+
+data LinkGraph
+  = LGraph (List LinkEdge)
+
+extract-trigrams :: String -> List Trigram
+extract-trigrams _ = Nil
+
+trigram-score :: List Trigram -> List Trigram -> Int
+trigram-score _ _ = 0
+
+build-link-graph :: List (Tuple String (List String)) -> LinkGraph
+build-link-graph _ = LGraph Nil

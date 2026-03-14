@@ -1,0 +1,28 @@
+module Export.Html
+  ( HtmlConfig(..)
+  , SanitizePolicy(..)
+  , render-to-html
+  , sanitize-html
+  ) where
+
+import Core.AST
+
+-- Typed HTML renderer + sanitizer for MdNode AST.
+
+data HtmlConfig
+  = HtmlConfig
+      { title : Maybe String
+      , css : Maybe String
+      , sanitize : SanitizePolicy
+      }
+
+data SanitizePolicy
+  = AllowAll
+  | StripAll
+  | AllowList (List String)
+
+render-to-html :: HtmlConfig -> MdNode -> String
+render-to-html _ _ = ""
+
+sanitize-html :: SanitizePolicy -> String -> String
+sanitize-html _ raw = raw
